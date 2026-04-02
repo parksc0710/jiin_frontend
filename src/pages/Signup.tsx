@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { API_BASE } from "@/lib/api";
 
 const Signup = () => {
   return (
@@ -25,7 +26,7 @@ const Signup = () => {
           <button
             className="flex h-13 w-full items-center justify-center gap-3 rounded-xl text-[15px] font-semibold transition-opacity hover:opacity-90"
             style={{ backgroundColor: "#FEE500", color: "#191919" }}
-            onClick={() => { window.location.href = "http://localhost:8080/api/oauth2/authorization/kakao"; }}
+            onClick={() => { window.location.href = `${API_BASE}/api/oauth2/authorization/kakao`; }}
           >
             <MessageCircle className="h-5 w-5" />
             카카오톡으로 시작하기
@@ -34,7 +35,7 @@ const Signup = () => {
           <button
             className="flex h-13 w-full items-center justify-center gap-3 rounded-xl text-[15px] font-semibold transition-opacity hover:opacity-90"
             style={{ backgroundColor: "#03C75A", color: "#FFFFFF" }}
-            onClick={() => { window.location.href = "http://localhost:8080/api/oauth2/authorization/naver"; }}
+            onClick={() => { window.location.href = `${API_BASE}/api/oauth2/authorization/naver`; }}
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z" />
