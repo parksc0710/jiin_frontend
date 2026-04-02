@@ -1,73 +1,107 @@
-# Welcome to your Lovable project
+# 지인살롱 프론트엔드
 
-## Project info
+믿음 안에서 삶의 결이 같은 사람들을 이어주는 모임 플랫폼 **지인살롱**의 프론트엔드 프로젝트입니다.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 기술 스택
 
-## How can I edit this code?
+| 분류 | 기술 |
+|------|------|
+| 프레임워크 | React 18, TypeScript |
+| 빌드 도구 | Vite |
+| 스타일링 | Tailwind CSS |
+| UI 컴포넌트 | shadcn/ui (Radix UI) |
+| 라우팅 | React Router DOM v6 |
+| 서버 상태 관리 | TanStack Query (React Query) |
+| 폼 관리 | React Hook Form + Zod |
+| 아이콘 | Lucide React |
+| 차트 | Recharts |
+| 테스트 | Vitest + Testing Library |
 
-There are several ways of editing your application.
+## 주요 기능
 
-**Use Lovable**
+- **소셜 로그인**: 카카오, 네이버 OAuth2
+- **인증 상태 관리**: HttpOnly 쿠키 기반 로그인 유지
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
 
-Changes made via Lovable will be committed automatically to this repo.
+## 시작하기
 
-**Use your preferred IDE**
+### 환경 요구사항
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js 18+
+- bun (권장) 또는 npm
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 설치
 
-Follow these steps:
+```bash
+bun install
+# 또는
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 개발 서버 실행
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+bun dev
+# 또는
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+개발 서버는 `http://localhost:8088`에서 실행됩니다.  
+`/api` 경로는 백엔드 서버(`http://localhost:8080`)로 프록시됩니다.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 빌드
 
-**Use GitHub Codespaces**
+```bash
+# 프로덕션 빌드
+bun run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# 개발 모드 빌드
+bun run build:dev
+```
 
-## What technologies are used for this project?
+### 테스트
 
-This project is built with:
+```bash
+# 단일 실행
+bun test
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# 워치 모드
+bun run test:watch
+```
 
-## How can I deploy this project?
+## 프로젝트 구조
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```
+src/
+├── components/         # 공통 컴포넌트
+│   ├── Header.tsx      # 상단 네비게이션 (로그인/로그아웃)
+│   ├── Hero.tsx        # 히어로 배너
+│   ├── Footer.tsx      # 하단 푸터
+│   ├── MeetingCard.tsx # 모임 카드
+│   ├── NavLink.tsx     # 네비게이션 링크
+│   └── ui/             # shadcn/ui 컴포넌트
+├── context/
+│   └── AuthContext.tsx # 인증 상태 전역 관리
+├── hooks/
+│   └── useMeetings.ts  # 모임 목록 상태 훅
+├── lib/
+│   ├── api.ts          # API 요청 유틸리티
+│   └── utils.ts        # 공통 유틸
+├── pages/
+│   ├── Index.tsx       # 메인 홈
+│   ├── MeetingDetail.tsx # 모임 상세
+│   ├── Signup.tsx      # 로그인/회원가입
+│   └── NotFound.tsx    # 404
+└── test/               # 테스트 파일
+```
 
-## Can I connect a custom domain to my Lovable project?
+## 백엔드 연동
 
-Yes, you can!
+백엔드 API 서버(Spring Boot)가 `http://localhost:8080`에서 실행 중이어야 합니다.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+| API | 설명 |
+|-----|------|
+| `GET /api/users/me` | 로그인 유저 정보 조회 |
+| `POST /api/auth/logout` | 로그아웃 |
+| `GET /api/oauth2/authorization/kakao` | 카카오 OAuth2 로그인 |
+| `GET /api/oauth2/authorization/naver` | 네이버 OAuth2 로그인 |
