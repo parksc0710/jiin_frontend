@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/AuthContext";
+
 const Header = () => {
-  return <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
+  const { user, isLoggedIn, isLoading, logout } = useAuth();
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         {/* 로고 */}
         <a href="/" className="flex items-center gap-2">
@@ -20,14 +25,34 @@ const Header = () => {
 
         {/* 액션 버튼 */}
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="text-muted-foreground">
-            로그인
-          </Button>
-          <Button size="sm" className="bg-primary hover:bg-primary/90" asChild>
-            <a href="/signup">가입하기</a>
-          </Button>
+          {!isLoading && (
+            isLoggedIn ? (
+              <>
+                <span className="text-sm font-medium text-foreground">
+                  {user?.nickname}님 안녕하세요?
+                </span>
+                <Button variant="ghost" size="sm" className="text-muted-foreground" asChild>
+                  <a href="/profile">회원정보수정</a>
+                </Button>
+                <Button variant="outline" size="sm" onClick={logout}>
+                  로그아웃
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="ghost" size="sm" className="text-muted-foreground" asChild>
+                  <a href="/signup">로그인</a>
+                </Button>
+                <Button size="sm" className="bg-primary hover:bg-primary/90" asChild>
+                  <a href="/signup">가입하기</a>
+                </Button>
+              </>
+            )
+          )}
         </div>
       </div>
-    </header>;
+    </header>
+  );
 };
+
 export default Header;

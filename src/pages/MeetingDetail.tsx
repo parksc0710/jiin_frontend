@@ -1,10 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { apiRequest } from "@/lib/api";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, ArrowLeft } from "lucide-react";
+import { toast } from "sonner";
 
 interface Meeting {
   id: number;
@@ -24,9 +26,44 @@ interface Meeting {
 }
 
 const MeetingDetail = () => {
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [meeting] = useState<Meeting | null>(null);
-  const loading = false;
+  const [meeting, setMeeting] = useState<Meeting | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [applying, setApplying] = useState(false);
+
+  useEffect(() => {
+    apiRequest<Meeting>(`/api/meetings/${id}`)
+      .then((data) => setMeeting(data))
+      .catch(() => setMeeting(null))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  const handleApply = async () => {
+    if (!meeting || meeting.is_closed || meeting.is_ended) return;
+    if (meeting.current_members >= meeting.max_members) return;
+
+    setApplying(true);
+    try {
+      await apiRequest("/api/applications", {
+        method: "POST",
+        body: JSON.stringify({ meeting_id: meeting.id }),
+      });
+
+      toast.success("신청이 완료되었습니다!");
+      setMeeting((prev) =>
+        prev ? { ...prev, current_members: prev.current_members + 1 } : prev
+      );
+
+      if (meeting.google_form_url) {
+        window.open(meeting.google_form_url, "_blank", "noopener,noreferrer");
+      }
+    } catch {
+      toast.error("신청에 실패했습니다. 다시 시도해주세요.");
+    } finally {
+      setApplying(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -140,8 +177,13 @@ const MeetingDetail = () => {
                   마감되었습니다
                 </Button>
               ) : (
-                <Button size="lg" className="w-full text-base">
-                  신청하기
+                <Button
+                  size="lg"
+                  className="w-full text-base"
+                  onClick={handleApply}
+                  disabled={applying}
+                >
+                  {applying ? "신청 중..." : "신청하기"}
                 </Button>
               )}
             </div>

@@ -19,11 +19,29 @@ export interface Meeting {
 
 export function useMeetings() {
   const [meetings] = useState<Meeting[]>([]);
-  const loading = false;
+  const [loading] = useState(false);
 
-  const meetingCategory: Meeting[] = [];
-  const readingCategory: Meeting[] = [];
-  const ended: Meeting[] = [];
+  const extractNumber = (title: string): number => {
+    const match = title.match(/\[(\d+)차\]/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
 
-  return { meetings, meetingCategory, readingCategory, ended, loading };
+  const active = meetings.filter((m) => !m.is_ended);
+  const ended = meetings.filter((m) => m.is_ended);
+
+  const sortActive = (list: Meeting[]) =>
+    [...list].sort((a, b) => {
+      if (a.is_new !== b.is_new) return a.is_new ? -1 : 1;
+      if (a.is_closed !== b.is_closed) return a.is_closed ? 1 : -1;
+      return 0;
+    });
+
+  const sortEnded = (list: Meeting[]) =>
+    [...list].sort((a, b) => extractNumber(b.title) - extractNumber(a.title));
+
+  const meetingCategory = sortActive(active.filter((m) => m.category === "지인 만남"));
+  const readingCategory = sortActive(active.filter((m) => m.category === "지인 독서"));
+  const sortedEnded = sortEnded(ended);
+
+  return { meetings, meetingCategory, readingCategory, ended: sortedEnded, loading };
 }
