@@ -1,4 +1,4 @@
-# 로그
+# Logs
 logs
 *.log
 npm-debug.log*
@@ -7,20 +7,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# 의존성
 node_modules
-
-# 빌드 결과물
 dist
 dist-ssr
 *.local
 
-# 환경변수
-.env
-.env.local
-.env.*.local
-
-# 에디터
+# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea

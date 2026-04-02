@@ -1,1 +1,122 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* 모임 커뮤니티 디자인 시스템 - 미니멀 & 여백 중심 */
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 220 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+
+    /* 옅은 녹색 포인트 컬러 */
+    --primary: 150 45% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 150 40% 95%;
+    --primary-muted: 150 35% 85%;
+
+    --secondary: 220 10% 96%;
+    --secondary-foreground: 220 15% 25%;
+
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 150 40% 95%;
+    --accent-foreground: 150 45% 35%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 92%;
+    --input: 220 15% 92%;
+    --ring: 150 45% 45%;
+
+    --radius: 0.75rem;
+
+    /* 그림자 */
+    --shadow-sm: 0 1px 2px 0 hsl(220 15% 15% / 0.03);
+    --shadow-card: 0 2px 8px -2px hsl(220 15% 15% / 0.06), 0 4px 16px -4px hsl(220 15% 15% / 0.04);
+    --shadow-card-hover: 0 8px 24px -4px hsl(220 15% 15% / 0.1), 0 12px 32px -8px hsl(220 15% 15% / 0.06);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 150 45% 45%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 150 40% 95%;
+    --sidebar-accent-foreground: 150 45% 35%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 150 45% 45%;
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 220 10% 95%;
+
+    --card: 220 20% 10%;
+    --card-foreground: 220 10% 95%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 220 10% 95%;
+
+    --primary: 150 45% 50%;
+    --primary-foreground: 220 20% 8%;
+    --primary-light: 150 30% 15%;
+    --primary-muted: 150 25% 20%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 220 10% 90%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 150 30% 15%;
+    --accent-foreground: 150 45% 70%;
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 150 45% 50%;
+
+    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+    --shadow-card-hover: 0 8px 24px -4px hsl(0 0% 0% / 0.4);
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 220 10% 90%;
+    --sidebar-primary: 150 45% 50%;
+    --sidebar-primary-foreground: 220 20% 8%;
+    --sidebar-accent: 150 30% 15%;
+    --sidebar-accent-foreground: 150 45% 70%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 150 45% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+}

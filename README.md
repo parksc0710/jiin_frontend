@@ -1,84 +1,73 @@
-# jiin_frontend
+# Welcome to your Lovable project
 
-지인(JIIN) 서비스의 프론트엔드 프로젝트입니다.
+## Project info
 
-## 기술 스택
+**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
-| 구분 | 기술 |
-|------|------|
-| 프레임워크 | React 19 |
-| 언어 | TypeScript 5.9 |
-| 빌드 도구 | Vite 8 |
-| 스타일 | Tailwind CSS 4 |
-| 린터 | ESLint 9 |
+## How can I edit this code?
 
-## 개발 환경 요구사항
+There are several ways of editing your application.
 
-- **Node.js** 18 이상
-- **npm** 9 이상
+**Use Lovable**
 
-## 프로젝트 구조
+Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
 
-```
-jiin_frontend/
-├── public/          # 정적 파일
-├── src/
-│   ├── assets/      # 이미지, SVG 등 정적 리소스
-│   ├── App.tsx      # 루트 컴포넌트
-│   ├── App.css      # 루트 스타일
-│   ├── main.tsx     # 앱 진입점
-│   └── index.css    # 글로벌 스타일
-├── index.html
-├── vite.config.ts   # Vite 설정
-├── tsconfig.json    # TypeScript 기본 설정
-├── tsconfig.app.json
-└── package.json
-```
+Changes made via Lovable will be committed automatically to this repo.
 
-## 시작하기
+**Use your preferred IDE**
 
-### 의존성 설치
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-```bash
-npm install
-```
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-### 개발 서버 실행
+Follow these steps:
 
-```bash
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-개발 서버가 `http://localhost:5173` 에서 실행됩니다.
+**Edit a file directly in GitHub**
 
-### 프로덕션 빌드
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-```bash
-npm run build
-```
+**Use GitHub Codespaces**
 
-빌드 결과물은 `dist/` 폴더에 생성됩니다.
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-### 빌드 미리보기
+## What technologies are used for this project?
 
-```bash
-npm run preview
-```
+This project is built with:
 
-### 린트 검사
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-```bash
-npm run lint
-```
+## How can I deploy this project?
 
-## TypeScript 설정
+Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
-- **타겟**: ES2023
-- **모듈 방식**: ESNext (Bundler 모드)
-- **JSX**: react-jsx
-- **엄격 모드**: 활성화 (`strict: true`)
-- **미사용 변수/파라미터 검사**: 활성화
+## Can I connect a custom domain to my Lovable project?
 
-## 저장소
+Yes, you can!
 
-- **GitHub**: [https://github.com/parksc0710/jiin_frontend](https://github.com/parksc0710/jiin_frontend)
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
