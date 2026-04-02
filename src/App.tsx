@@ -7,6 +7,8 @@ import { AuthProvider } from "./context/AuthContext";
 import Index from "./pages/Index";
 import Signup from "./pages/Signup";
 import MeetingDetail from "./pages/MeetingDetail";
+import Profile from "./pages/Profile";
+import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/meeting/:id" element={<MeetingDetail />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/register" element={<Register />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

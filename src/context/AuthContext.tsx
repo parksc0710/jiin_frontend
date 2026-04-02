@@ -22,7 +22,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // 앱 마운트 시 쿠키 기반으로 로그인 상태 확인
+    // 인증이 필요 없는 페이지에서는 유저 확인 생략
+    const skipAuthPaths = ["/signup", "/register"];
+    if (skipAuthPaths.includes(window.location.pathname)) {
+      setIsLoading(false);
+      return;
+    }
+
     // apiRequest 대신 raw fetch 사용: 401은 미로그인 정상 응답이므로 리다이렉트하지 않음
     fetch(`${API_BASE}/api/users/me`, { credentials: "include" })
       .then((res) => (res.ok ? res.json() : null))
